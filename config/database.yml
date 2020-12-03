@@ -9,9 +9,16 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 
-development:
+# 変更前
+#development:
+#  <<: *default
+#  database: db/development.sqlite3
+# 変更後
+production:
   <<: *default
-  database: db/development.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
